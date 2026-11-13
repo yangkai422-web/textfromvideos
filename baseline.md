@@ -1,0 +1,4 @@
+- Launch date: 2026-11-13
+- Homepage URL: https://textfromvideos.com/
+- Target keywords: tiktok transcript 8100/mo KD 24; instagram transcript 2400/mo KD 29.3
+- Current ranks: all 未进前 100
