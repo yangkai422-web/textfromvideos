@@ -57,11 +57,21 @@ export class TextFromVideosContainer extends DurableObject<Env> {
       throw new Error("Container binding is not available on this Durable Object");
     }
 
-    if (!container.running) {
-      const image = container.images?.base;
-      if (!image) {
-        throw new Error("Container image is not configured");
+    const image = container.images?.base;
+    if (!image) {
+      throw new Error("Container image is not configured");
+    }
+
+    // durable_object policy does not auto-replace a running instance
+    // when the Worker image digest changes; compare and restart.
+    if (container.running) {
+      const info = await container.inspect();
+      if (info && info.image !== "" && info.image !== image) {
+        await container.destroy();
       }
+    }
+
+    if (!container.running) {
       container.start({
         image,
         instance: "basic",
