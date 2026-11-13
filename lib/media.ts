@@ -145,6 +145,9 @@ function commonYtDlpArgs(): string[] {
     "20",
     "--retries",
     "2",
+    // TikTok often requires TLS/HTTP impersonation; needs curl_cffi in the image.
+    "--impersonate",
+    "chrome",
   ];
   const cookies = getYtDlpCookiesFile();
   if (cookies) args.push("--cookies", cookies);

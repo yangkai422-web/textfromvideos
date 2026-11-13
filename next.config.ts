@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "standalone",
   trailingSlash: true,
   serverExternalPackages: ["pg", "pg-native"],
   cacheComponents: true,

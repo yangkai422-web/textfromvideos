@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "textfromvideos-app",
+  "main": "worker/index.ts",
+  "account_id": "62ffbf61f44b6e2e24c9c0d483181eec",
+  "compatibility_date": "2026-11-13",
+  "workers_dev": true,
+  "preview_urls": false,
+  "upload_source_maps": true,
+  "observability": {
+    "enabled": true,
+    "traces": { "enabled": true }
+  },
+  "vars": {
+    "ASR_PROVIDER": "deepgram",
+    "NEXT_PUBLIC_SITE_URL": "https://textfromvideos.com"
+  },
+  "containers": [
+    {
+      "class_name": "TextFromVideosContainer",
+      "scheduling_policy": "durable_object",
+      "images": {
+        "base": {
+          "dockerfile": "./Dockerfile",
+          "build_context": "."
+        }
+      }
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "APP_CONTAINER",
+        "class_name": "TextFromVideosContainer"
+      }
+    ]
+  },
+  "exports": {
+    "TextFromVideosContainer": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
+  }
+}

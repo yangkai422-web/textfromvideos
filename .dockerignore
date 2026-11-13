@@ -1,0 +1,17 @@
+node_modules
+.next
+.git
+.github
+.secrets
+.env
+.env.*
+!.env.example
+.wrangler
+*.tsbuildinfo
+coverage
+README.md
+AGENTS.md
+.DS_Store
+**/*.pem
+.vscode
+.idea
