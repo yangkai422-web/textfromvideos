@@ -50,7 +50,7 @@ function matchTikTok(url: URL): ParsedVideo | null {
   const parts = firstPathSegments(url.pathname);
 
   // /@user/video/123, /@user/photo/123
-  if (parts.length >= 3 && parts[0].startsWith("@")) {
+  if (parts.length >= 3 && parts[0].startsWith("@") && parts[0].length > 1) {
     const kind = parts[1];
     const id = stripHtmlSuffix(parts[2]);
     if ((kind === "video" || kind === "photo") && TIKTOK_ID.test(id)) {
@@ -58,6 +58,23 @@ function matchTikTok(url: URL): ParsedVideo | null {
         platform: "tiktok",
         videoId: id,
         canonicalUrl: `https://www.tiktok.com/${parts[0]}/video/${id}`,
+      };
+    }
+  }
+
+  // /share/video/123 already includes the id; do not resolve redirects
+  // from a datacenter IP, which can land on a username-less /@/video/ URL.
+  if (
+    parts.length >= 3 &&
+    parts[0] === "share" &&
+    (parts[1] === "video" || parts[1] === "photo")
+  ) {
+    const id = stripHtmlSuffix(parts[2]);
+    if (TIKTOK_ID.test(id)) {
+      return {
+        platform: "tiktok",
+        videoId: id,
+        canonicalUrl: `https://www.tiktok.com/video/${id}`,
       };
     }
   }
