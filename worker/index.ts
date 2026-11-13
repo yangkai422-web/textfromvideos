@@ -9,6 +9,7 @@ export interface Env {
   ASR_API_KEY?: string;
   ASR_PROVIDER?: string;
   NEXT_PUBLIC_SITE_URL?: string;
+  YTDLP_COOKIES_B64?: string;
 }
 
 const PORT = 8080;
@@ -77,6 +78,8 @@ export class TextFromVideosContainer extends DurableObject<Env> {
           ASSEMBLYAI_API_KEY: this.env.ASSEMBLYAI_API_KEY || "",
           OPENAI_API_KEY: this.env.OPENAI_API_KEY || "",
           ASR_API_KEY: this.env.ASR_API_KEY || this.env.DEEPGRAM_API_KEY || "",
+          YTDLP_COOKIES_B64: this.env.YTDLP_COOKIES_B64 || "",
+          YTDLP_COOKIES_FILE: "/tmp/tiktok-cookies.txt",
         },
       });
     }

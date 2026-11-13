@@ -29,7 +29,8 @@ pnpm lint
 | `ASSEMBLYAI_API_KEY` | for AssemblyAI | |
 | `OPENAI_API_KEY` | for Whisper | Only used when `ASR_PROVIDER=openai`. Do not enable until the account has credits. |
 | `YTDLP_PATH`, `FFMPEG_PATH`, `FFPROBE_PATH` | no | Defaults to the binary names on `PATH` |
-| `YTDLP_COOKIES_FILE` | no | Netscape cookies file if Instagram (or some TikTok) downloads need a logged-in session |
+| `YTDLP_COOKIES_FILE` | no | Local path to a Netscape cookies file if Instagram (or some TikTok) downloads need a logged-in session |
+| `YTDLP_COOKIES_B64` | no | Production Worker secret: base64 of that Netscape file. The container writes it to `/tmp/tiktok-cookies.txt` on start |
 | `NEXT_PUBLIC_GA4_MEASUREMENT_ID` | no | Loads gtag when set to a `G-...` id |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | no | Loads the Plausible script when set |
 
@@ -76,7 +77,7 @@ Secrets are **not** in the git repo or the image. They live as Worker secrets on
 
 Do not set `ASR_PROVIDER=openai` in production until the OpenAI account has credits.
 
-Public TikTok downloads from the Cloudflare Container IP currently fail with yt-dlp `HTTP Error 403: Forbidden` (the API surfaces this as `private_video`). To unblock, provide a Netscape cookies file from a logged-in browser session and set the Worker secret `YTDLP_COOKIES_FILE` to its path inside the container (or rebuild the image with the file mounted and that env var set). Do not commit cookie files.
+Public TikTok downloads from the Cloudflare Container IP can fail with yt-dlp `HTTP Error 403: Forbidden` (the API surfaces this as `private_video`). To unblock, export a Netscape cookies file from a logged-in browser session, then set the Worker secret `YTDLP_COOKIES_B64` to the base64 of that file (do not commit the file or paste it in chat). The container writes it to `/tmp/tiktok-cookies.txt` on start.
 
 ### Redeploy
 
