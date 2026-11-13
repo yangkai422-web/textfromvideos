@@ -9,7 +9,14 @@ write_cookies() {
 }
 
 if [ -n "${YTDLP_COOKIES_B64:-}" ]; then
-  printf '%s' "$YTDLP_COOKIES_B64" | base64 -d > "$COOKIE_PATH"
+  tmp="$(mktemp)"
+  printf '%s' "$YTDLP_COOKIES_B64" | base64 -d > "$tmp"
+  if gzip -t "$tmp" 2>/dev/null; then
+    gzip -d -c "$tmp" > "$COOKIE_PATH"
+  else
+    cp "$tmp" "$COOKIE_PATH"
+  fi
+  rm -f "$tmp"
   write_cookies
   unset YTDLP_COOKIES_B64
 elif [ -n "${YTDLP_COOKIES:-}" ]; then

@@ -77,7 +77,7 @@ Secrets are **not** in the git repo or the image. They live as Worker secrets on
 
 Do not set `ASR_PROVIDER=openai` in production until the OpenAI account has credits.
 
-Public TikTok downloads from the Cloudflare Container IP can fail with yt-dlp `HTTP Error 403: Forbidden` (the API surfaces this as `private_video`). To unblock, export a Netscape cookies file from a logged-in browser session, then set the Worker secret `YTDLP_COOKIES_B64` to the base64 of that file (do not commit the file or paste it in chat). The container writes it to `/tmp/tiktok-cookies.txt` on start.
+Public TikTok downloads from the Cloudflare Container IP can fail with yt-dlp `HTTP Error 403: Forbidden` (the API surfaces this as `private_video`). To unblock, export a Netscape cookies file from a logged-in browser session, then gzip the file and set the Worker secret `YTDLP_COOKIES_B64` to its base64 (plain base64 also works if it fits; do not commit the file or paste it in chat). The container writes it to `/tmp/tiktok-cookies.txt` on start.
 
 ### Redeploy
 
