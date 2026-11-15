@@ -6,6 +6,10 @@ export const FREE_MAX_DURATION_SEC = 180;
 export const TRANSCRIBE_TIMEOUT_MS = 90_000;
 export const CACHE_TTL_DAYS = 7;
 export const FREE_DAILY_LIMIT = 3;
+/** Max recorded pipeline failures per IP per UTC day (excludes rate/retry caps). */
+export const FREE_FAILURE_LIMIT = 5;
+/** Do not rerun speech-to-text for a video that failed this recently. */
+export const VIDEO_FAILURE_COOLDOWN_HOURS = 6;
 
 export type AsrProvider = "deepgram" | "assemblyai" | "openai";
 

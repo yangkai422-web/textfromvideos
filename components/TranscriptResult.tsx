@@ -95,6 +95,19 @@ export function TranscriptResult({
           >
             Download SRT
           </button>
+          <button
+            type="button"
+            onClick={() =>
+              downloadFile(
+                "transcript.vtt",
+                result.vtt || result.srt || result.text,
+                "text/vtt;charset=utf-8",
+              )
+            }
+            className="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink hover:bg-background"
+          >
+            Download VTT
+          </button>
         </div>
       </div>
       <p className="mt-4 whitespace-pre-wrap text-base leading-7 text-ink">

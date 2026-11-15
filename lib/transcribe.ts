@@ -9,6 +9,11 @@ import {
   inspectMedia,
 } from "./media";
 import { parseVideoUrl } from "./platform";
+import {
+  assertFailureRetryCap,
+  assertVideoNotRecentlyFailed,
+  recordTranscribeFailure,
+} from "./failure-cap";
 import { assertFreeQuota } from "./rate-limit";
 import { asrToPayload, transcribeAudio } from "./asr";
 import { buildTranscript, srtToVtt, type TranscriptPayload } from "./transcript-format";
@@ -37,6 +42,8 @@ async function runPipeline(
       return { ...withVtt(cached), cached: true };
     }
 
+    await assertVideoNotRecentlyFailed(parsed.platform, parsed.videoId);
+    await assertFailureRetryCap(ip);
     await assertFreeQuota(ip);
     await updateJob(jobId, "running");
 
@@ -83,6 +90,7 @@ async function runPipeline(
   } catch (error) {
     const publicError = toPublicError(error);
     await updateJob(jobId, "failed", publicError.message);
+    await recordTranscribeFailure(ip, parsed.platform, parsed.videoId, publicError);
     throw publicError;
   }
 }

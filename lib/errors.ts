@@ -4,6 +4,7 @@ export type TranscribeErrorCode =
   | "timeout"
   | "duration_limit"
   | "rate_limit"
+  | "retry_limit"
   | "no_media"
   | "internal";
 
@@ -56,6 +57,12 @@ export const ERRORS = {
       "You've reached today's free limit of 3 transcripts. Please try again tomorrow.",
       429,
       "rate_limit",
+    ),
+  retryLimit: () =>
+    new TranscribeError(
+      "Too many failed transcript attempts today. Please try again tomorrow.",
+      429,
+      "retry_limit",
     ),
   noMedia: () =>
     new TranscribeError(

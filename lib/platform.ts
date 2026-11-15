@@ -74,19 +74,21 @@ function matchTikTok(url: URL): ParsedVideo | null {
       return {
         platform: "tiktok",
         videoId: id,
-        canonicalUrl: `https://www.tiktok.com/video/${id}`,
+        // /video/{id} 404s in yt-dlp/TikTok; keep the share path.
+        canonicalUrl: `https://www.tiktok.com/share/video/${id}`,
       };
     }
   }
 
-  // /video/123, /v/123, /embed/123, /embed/v2/123
+  // /video/123, /v/123, /embed/123, /embed/v2/123 also lack a username
+  // and 404 at /video/{id}. Use the share canonical, which yt-dlp accepts.
   if (parts.length >= 2 && (parts[0] === "video" || parts[0] === "v")) {
     const id = stripHtmlSuffix(parts[1]);
     if (TIKTOK_ID.test(id)) {
       return {
         platform: "tiktok",
         videoId: id,
-        canonicalUrl: `https://www.tiktok.com/video/${id}`,
+        canonicalUrl: `https://www.tiktok.com/share/video/${id}`,
       };
     }
   }
@@ -97,7 +99,7 @@ function matchTikTok(url: URL): ParsedVideo | null {
       return {
         platform: "tiktok",
         videoId: id,
-        canonicalUrl: `https://www.tiktok.com/video/${id}`,
+        canonicalUrl: `https://www.tiktok.com/share/video/${id}`,
       };
     }
   }

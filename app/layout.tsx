@@ -17,13 +17,36 @@ const geistMono = Geist_Mono({
 const ga4Id = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID?.trim();
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN?.trim();
 
+const defaultTitle = "TikTok Transcript Generator – Free Video to Text";
+const defaultDescription =
+  "Paste a TikTok or Instagram Reels link and get a clean text transcript in seconds. Copy it, or download TXT, SRT, or VTT.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "TikTok Transcript Generator – Free Video to Text",
-  description:
-    "Paste a TikTok or Instagram Reels link and get a clean text transcript in seconds. Copy it, or download TXT / SRT with timestamps.",
+  title: defaultTitle,
+  description: defaultDescription,
   alternates: {
     canonical: SITE_URL + "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "textfromvideos.com",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "TikTok Transcript Generator – Free video to text",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: ["/og-image.png"],
   },
 };
 

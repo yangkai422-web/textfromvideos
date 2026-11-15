@@ -35,7 +35,7 @@ export function TranscriptForm() {
     const timer = window.setTimeout(() => controller.abort(), 95_000);
 
     try {
-      const response = await fetch("/api/transcribe", {
+      const response = await fetch("/api/transcribe/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: trimmed }),

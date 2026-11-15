@@ -98,20 +98,20 @@ export async function getCachedTranscript(
          where platform = $1
            and video_id = $2
            and lang = $3
-           and created_at > now() - interval '7 days'
+           and created_at > now() - ($4::int * interval '1 day')
          order by created_at desc
          limit 1`,
-        [platform, videoId, lang],
+        [platform, videoId, lang, CACHE_TTL_DAYS],
       )
     : await query<TranscriptRow>(
         `select platform, video_id, lang, source, text, srt, created_at
          from transcripts
          where platform = $1
            and video_id = $2
-           and created_at > now() - interval '7 days'
+           and created_at > now() - ($3::int * interval '1 day')
          order by created_at desc
          limit 1`,
-        [platform, videoId],
+        [platform, videoId, CACHE_TTL_DAYS],
       );
 
   const row = result?.rows[0];
