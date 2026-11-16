@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { TranscriptForm } from "@/components/TranscriptForm";
 import { SITE_URL } from "@/lib/config";
 
@@ -95,11 +97,7 @@ const jsonLd = {
 export default function Home() {
   return (
     <div className="flex min-h-full flex-col">
-      <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-5 py-6">
-        <Link href="/" className="text-sm font-semibold tracking-tight text-ink">
-          textfromvideos.com
-        </Link>
-      </header>
+      <SiteHeader />
 
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-5 pb-16">
         <h1 className="max-w-xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
@@ -294,10 +292,20 @@ export default function Home() {
               Public Instagram Reels are supported in the same form. Paste a
               link to a single Reel, including instagram.com/reel/,
               instagram.com/reels/, or a /p/ post link that points to a Reel.
-              The same rules apply: the Reel must be public, it must contain
-              spoken audio, and it must be no longer than three minutes. A
-              music-only Reel, a private Reel, or a Reel that cannot be reached
-              will not produce a transcript.
+              The{" "}
+              <Link href="/instagram-reels-transcript/" className="font-medium text-accent hover:text-accent-hover">
+                Instagram Reels transcript guide
+              </Link>{" "}
+              explains those URL shapes in more detail, including share links
+              and username-prefixed paths. The same rules apply: the Reel must
+              be public, it must contain spoken audio, and it must be no longer
+              than three minutes. A music-only Reel, a private Reel, or a Reel
+              that cannot be reached will not produce a transcript. That guide
+              also covers{" "}
+              <Link href="/instagram-reels-transcript/" className="font-medium text-accent hover:text-accent-hover">
+                why Reels can be harder to transcribe than TikTok
+              </Link>{" "}
+              and how Reels share the same free daily limit.
             </p>
             <p className="mt-4">
               YouTube is not supported yet. If you paste a YouTube URL, the tool
@@ -416,10 +424,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mx-auto w-full max-w-3xl px-5 py-8 text-sm text-muted">
-        Free for public TikTok and Instagram Reels videos up to 3 minutes, with a
-        daily limit of 3 new transcripts per IP.
-      </footer>
+      <SiteFooter />
 
       <script
         type="application/ld+json"
