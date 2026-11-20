@@ -38,7 +38,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY scripts/container-entrypoint.sh /app/container-entrypoint.sh
-RUN chmod 755 /app/container-entrypoint.sh
+RUN sed -i 's/\r$//' /app/container-entrypoint.sh && chmod 755 /app/container-entrypoint.sh
 
 EXPOSE 8080
 USER node
