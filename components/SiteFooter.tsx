@@ -19,6 +19,14 @@ export function SiteFooter() {
         <Link href="/about/" className={linkClass}>
           About
         </Link>
+        <a
+          href="https://aidirs.org/"
+          target="_blank"
+          rel="noopener"
+          className={linkClass}
+        >
+          Featured on AIDirs
+        </a>
       </nav>
     </footer>
   );
