@@ -43,24 +43,24 @@ const faq = [
     id: "faq-tiktok",
     question: "How do I get a transcript from a TikTok video?",
     answer:
-      "Paste a public TikTok link into the form at the top of this page and click Get transcript. You can copy the text or download TikTok transcript files as TXT, SRT, or VTT.",
+      "Paste a public TikTok link into the form above and click Get transcript, then copy the text or download TXT, SRT, or VTT.",
   },
   {
     id: "faq-reels",
     question: "Does this work with Instagram Reels?",
     answer:
-      "Yes. Paste a public Instagram Reels link the same way you would paste a TikTok link. The Reel must be public, include spoken audio, and be no longer than three minutes. Music-only or private Reels will not produce a transcript.",
+      "Yes. Public Instagram Reels up to three minutes with spoken audio work in the same form, or on the dedicated Instagram Reels transcript page.",
   },
   {
     id: "faq-youtube",
     question: "Is YouTube supported?",
-    answer: "Not yet. This tool currently focuses on TikTok and Instagram Reels.",
+    answer: "Not yet. Only TikTok and Instagram Reels are supported.",
   },
   {
     id: "faq-free",
     question: "Is it free?",
     answer:
-      "Yes. You can transcribe up to three new public videos per IP address each UTC day, and each video can be up to three minutes long. If you already generated a transcript for that video in the last seven days, the cached result is returned and does not count toward the daily limit.",
+      "Yes. Up to three new public videos per IP each UTC day (max 3 minutes each); cached videos from the past seven days do not count.",
   },
 ];
 
@@ -141,33 +141,9 @@ export default function Home() {
               served again without another speech-to-text run.
             </p>
             <p className="mt-4">
-              The same form also accepts a public Instagram Reels link. Paste
-              the Reels URL exactly as you would paste a TikTok URL. Private
+              The same form also accepts a public Instagram Reels link. Private
               videos, deleted videos, and clips with no spoken audio cannot be
               turned into text.
-            </p>
-            <p className="mt-4">
-              If you are new to the tool, start with the{" "}
-              <a href="#get-transcript" className="font-medium text-accent hover:text-accent-hover">
-                form above
-              </a>
-              , then read the notes on{" "}
-              <a href="#supported-links" className="font-medium text-accent hover:text-accent-hover">
-                supported links
-              </a>
-              ,{" "}
-              <a href="#formats" className="font-medium text-accent hover:text-accent-hover">
-                file formats
-              </a>
-              , and the{" "}
-              <a href="#free-quota" className="font-medium text-accent hover:text-accent-hover">
-                free daily limit
-              </a>
-              . The{" "}
-              <a href="#faq" className="font-medium text-accent hover:text-accent-hover">
-                FAQ
-              </a>{" "}
-              at the bottom answers the most common questions in short form.
             </p>
           </section>
 
@@ -395,16 +371,7 @@ export default function Home() {
             <p className="mt-4">
               Do not hammer the button on a video that just failed. Repeated
               failures are capped so the same broken link cannot keep spending
-              speech-to-text credit. Use the{" "}
-              <a href="#faq" className="font-medium text-accent hover:text-accent-hover">
-                FAQ
-              </a>{" "}
-              if you need a shorter answer, or go back to the{" "}
-              <a href="#get-transcript" className="font-medium text-accent hover:text-accent-hover">
-                form
-              </a>{" "}
-              once you have a public, spoken, under-three-minute TikTok or Reels
-              link.
+              speech-to-text credit.
             </p>
           </section>
         </article>

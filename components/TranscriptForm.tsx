@@ -9,7 +9,17 @@ type ApiError = {
   code?: string;
 };
 
-export function TranscriptForm() {
+type TranscriptFormProps = {
+  placeholder?: string;
+  emptyError?: string;
+  inputLabel?: string;
+};
+
+export function TranscriptForm({
+  placeholder = "Paste a TikTok or Reels link",
+  emptyError = "Paste a TikTok or Instagram Reels URL first.",
+  inputLabel = "Video link",
+}: TranscriptFormProps = {}) {
   const [url, setUrl] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [progress, setProgress] = useState("Getting your transcript…");
@@ -21,7 +31,7 @@ export function TranscriptForm() {
     const trimmed = url.trim();
     if (!trimmed) {
       setStatus("error");
-      setError("Paste a TikTok or Instagram Reels URL first.");
+      setError(emptyError);
       return;
     }
 
@@ -74,7 +84,7 @@ export function TranscriptForm() {
     <div className="space-y-5">
       <form onSubmit={onSubmit} className="space-y-3">
         <label htmlFor="video-url" className="sr-only">
-          Video link
+          {inputLabel}
         </label>
         <div className="flex flex-col gap-3 sm:flex-row">
           <input
@@ -83,7 +93,7 @@ export function TranscriptForm() {
             type="url"
             inputMode="url"
             autoComplete="off"
-            placeholder="Paste a TikTok or Reels link"
+            placeholder={placeholder}
             value={url}
             onChange={(event) => setUrl(event.target.value)}
             className="w-full flex-1 rounded-2xl border border-line bg-card px-4 py-3 text-base text-ink outline-none ring-accent placeholder:text-muted focus:ring-2"

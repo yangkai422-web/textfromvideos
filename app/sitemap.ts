@@ -5,13 +5,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: `${SITE_URL}/`,
-      lastModified: new Date("2026-11-16"),
+      lastModified: new Date("2026-11-20"),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/instagram-reels-transcript/`,
-      lastModified: new Date("2026-11-16"),
+      lastModified: new Date("2026-11-20"),
       changeFrequency: "weekly",
       priority: 0.8,
     },

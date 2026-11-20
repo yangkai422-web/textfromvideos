@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TranscriptForm } from "@/components/TranscriptForm";
 import { SITE_URL } from "@/lib/config";
 
 const title = "Instagram Reels Transcript – Free Reel to Text";
 const description =
-  "Paste a public Instagram Reels link and get a clean text transcript. Copy it, or download TXT, SRT, or VTT. Works with public Reels up to three minutes.";
+  "Paste a public Instagram Reels link to convert Instagram Reels to text in seconds. Free Reels transcript generator with TXT, SRT, and VTT downloads.";
 const canonical = `${SITE_URL}/instagram-reels-transcript/`;
 
 export const metadata: Metadata = {
@@ -40,38 +41,55 @@ export const metadata: Metadata = {
 
 const faq = [
   {
-    question: "Which Instagram Reels links can I paste?",
+    question: "Which Instagram Reels links work in this Reels transcript generator?",
     answer:
-      "The tool accepts public instagram.com/reel/ and instagram.com/reels/ links, /p/ post links, username-prefixed versions of those paths, and Instagram share or /s/ links after they redirect to a recognized Reel or post. You can omit https://, and tracking parameters can stay in place. Profile pages, stories, and YouTube URLs are not supported, and the site does not accept uploaded files.",
+      "Paste public instagram.com/reel/ and instagram.com/reels/ links, /p/ post links, username-prefixed paths, or Instagram share and /s/ links that redirect to a public Reel or post. You can omit https:// and keep tracking parameters. Profile pages, stories, YouTube URLs, and uploaded files are not supported.",
   },
   {
-    question: "Why can a Reel be harder to transcribe than a TikTok?",
+    question: "How do I download Instagram Reels transcript files in TXT, SRT, or VTT?",
     answer:
-      "Reels are more often private, login-gated, or built around a music track rather than speech. If the tool cannot reach the video, it reports that the video is private or could not be reached. If official or automatic captions exist, those are used; otherwise the audio is transcribed with Deepgram. Speech-to-text cannot invent dialogue from a song or read text that exists only on screen.",
+      "Paste a public Reel link into the form at the top of this page and click Get transcript. Once the text appears on the same page, copy the plain text or click TXT, SRT, or VTT to download Instagram Reels transcript files right away.",
   },
   {
-    question: "What happens if a Reel is private, music-only, or longer than 3 minutes?",
+    question: "Why can an Instagram Reel fail to convert from Instagram Reels to text?",
     answer:
-      "A private Reel returns “This video is private.” A deleted or unreachable Reel may return “This video could not be reached. It may be private or deleted.” A music-only Reel, or one with no spoken audio, returns “This video has no usable audio or captions.” A Reel longer than three minutes is rejected with “This video is longer than 3 minutes. The free limit is 3 minutes.”",
+      "Private, login-gated, deleted, or music-only Reels cannot be transcribed. A private Reel returns “This video is private.” A music-only or silent Reel returns “This video has no usable audio or captions.” Any Reel over three minutes returns “This video is longer than 3 minutes. The free limit is 3 minutes.”",
   },
   {
-    question: "Does a Reels transcript use the same free daily limit as TikTok?",
+    question: "Is the free Instagram Reels transcript limit shared with TikTok?",
     answer:
-      "Yes. You can transcribe up to three new public videos per IP address each UTC day, and TikTok and Reels share that cap. If you already generated a transcript for that video in the last seven days, the cached result is returned and does not count toward the daily limit.",
+      "Yes. You get up to three new public transcripts per IP address each UTC day across Instagram Reels and TikTok combined. If a Reel was transcribed within the last seven days, the cached result is returned without counting toward your daily limit.",
   },
 ];
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faq.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      mainEntity: faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
     },
-  })),
+    {
+      "@type": "SoftwareApplication",
+      name: "Instagram Reels Transcript Generator",
+      applicationCategory: "MultimediaApplication",
+      operatingSystem: "Web",
+      url: canonical,
+      description,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+    },
+  ],
 };
 
 const linkClass = "font-medium text-accent hover:text-accent-hover";
@@ -81,23 +99,25 @@ export default function InstagramReelsTranscriptPage() {
     <div className="flex min-h-full flex-col">
       <SiteHeader />
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-5 pb-16">
-        <h1 className="text-4xl font-semibold tracking-tight text-ink">
+      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-5 pb-16">
+        <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
           Instagram Reels Transcript
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
-          This page explains how textfromvideos.com turns a public Instagram
-          Reels link into a written transcript. The{" "}
-          <Link href="/#get-transcript" className={linkClass}>
-            transcribe form
-          </Link>{" "}
-          itself is on the homepage. Copy a public Reel URL, paste it into that
-          form, and choose Get transcript. When the text appears, you can copy
-          it or{" "}
-          <Link href="/#formats" className={linkClass}>
-            download TXT, SRT, or VTT
-          </Link>. The site does not accept uploaded video files.
+          Paste a public Reel URL below to convert Instagram Reels to text in
+          seconds. This free Instagram Reels transcript tool runs in your
+          browser with no sign-up—copy the spoken words or download Instagram
+          Reels transcript files as TXT, SRT, or VTT. Public Reels up to three
+          minutes are supported; uploaded video files are not accepted.
         </p>
+
+        <div id="get-transcript" className="mt-8">
+          <TranscriptForm
+            placeholder="Paste a public Instagram Reels link"
+            emptyError="Paste a public Instagram Reels or TikTok URL first."
+            inputLabel="Instagram Reels link"
+          />
+        </div>
 
         <article className="mt-16 space-y-14 text-base leading-7 text-muted">
           <section aria-labelledby="reels-how-to-heading">
@@ -105,22 +125,42 @@ export default function InstagramReelsTranscriptPage() {
               id="reels-how-to-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              How to transcribe an Instagram Reel
+              How this Reels transcript generator turns Instagram Reels to text
             </h2>
             <p className="mt-4">
-              The flow matches the{" "}
-              <Link href="/#how-to" className={linkClass}>
-                how-to on the homepage
-              </Link>. Open the Reel in the Instagram app or on the website and copy
-              the link for that single video, not a profile or a hashtag feed.
-              Paste the URL into the{" "}
-              <Link href="/#get-transcript" className={linkClass}>
-                form on the homepage
+              Getting an Instagram Reels transcript takes three steps on this
+              page. First, open the Reel in the Instagram app or on the web and
+              copy the link to that single video, not a profile or hashtag feed.
+              Second, paste the URL into the{" "}
+              <a href="#get-transcript" className={linkClass}>
+                form above
+              </a>{" "}
+              and click Get transcript. Third, wait a few seconds for the spoken
+              text to appear right below the box.
+            </p>
+            <p className="mt-4">
+              Use this Reels transcript generator when you want to repost a
+              Reel’s main takeaway to X as plain text instead of sharing a video
+              link, or pull an exact quote into a newsletter or research doc.
+              Converting Instagram Reels to text also helps when you want to
+              study a creator’s hook, summarize a short tutorial, or search what
+              was said without replaying the clip line by line.
+            </p>
+
+            <h3 className="mt-8 text-xl font-semibold tracking-tight text-ink">
+              Download Instagram Reels transcript files in TXT, SRT, or VTT
+            </h3>
+            <p className="mt-3">
+              Once the transcript loads, you can copy it in one click or
+              download Instagram Reels transcript files in three formats. Grab
+              TXT when you want clean paragraphs to paste into X posts, blog
+              drafts, or team notes. Choose SRT or VTT when you need timestamped
+              captions to import into a video editor or web player. You can also
+              check the{" "}
+              <Link href="/#formats" className={linkClass}>
+                TXT, SRT, and VTT format guide
               </Link>{" "}
-              and click Get transcript. If the Reel is public, includes spoken
-              audio, and is no longer than three minutes, the transcript appears
-              on that same page in a few seconds. You can then copy the plain
-              text or download TXT, SRT, or VTT.
+              for details on when each subtitle wrapper fits best.
             </p>
           </section>
 
@@ -129,62 +169,56 @@ export default function InstagramReelsTranscriptPage() {
               id="reels-links-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              Which Reels links the tool accepts
+              Which Instagram Reels links work with Instagram Reels to text
             </h2>
             <p className="mt-4">
-              The tool accepts several public Instagram URL shapes, as long as
-              the address points to a single Reel or post. A standard Reel link
-              looks like instagram.com/reel/ followed by the short code for that
-              video. The same Reel also works when the path uses
-              instagram.com/reels/; that form is treated as a Reel and
-              normalized to the usual /reel/ address. A /p/ post link is
-              accepted as well, including the username-prefixed forms
-              instagram.com/username/reel/, instagram.com/username/reels/, and
-              instagram.com/username/p/.
+              The Reels transcript generator accepts public Instagram URLs that
+              point to a single Reel or video post. Standard links use
+              instagram.com/reel/ followed by the video’s short code, and
+              instagram.com/reels/ links are normalized to the same Reel
+              address. Public /p/ post links work too, including
+              username-prefixed paths such as instagram.com/username/reel/,
+              instagram.com/username/reels/, and instagram.com/username/p/.
             </p>
             <p className="mt-4">
-              You can paste the URL with or without https://. Addresses on
+              You can paste a link with or without https://, and tracking
+              parameters at the end of the URL can stay in place. Addresses on
               www.instagram.com, m.instagram.com, other instagram.com
-              subdomains, and instagr.am are recognized in the same way.
-              Tracking parameters at the end of a link can stay in place.
-              Instagram share links and short /s/ links are also accepted: the
-              site follows the redirect to the public Reel or post they point
-              to, and transcription continues if that destination is a
-              recognized /reel/, /reels/, or /p/ URL. If the share link does not
-              resolve, or you paste a profile, hashtag page, story, or other
-              surface that is not a single Reel or post, you will see: “This
-              link cannot be recognized. Paste a TikTok or Instagram Reels
-              URL.” In that case, paste the full Reel page URL instead. YouTube
-              URLs are not supported, and downloaded files cannot be uploaded.
+              subdomains, and instagr.am are all recognized. Instagram share
+              links and short /s/ links are followed to their destination Reel
+              or post before transcription starts. If a share link does not
+              resolve, or you paste a profile, story, or hashtag page, the form
+              returns: “This link cannot be recognized. Paste a TikTok or
+              Instagram Reels URL.” Paste the direct Reel page link instead.
+              YouTube URLs and uploaded video files are not supported.
             </p>
           </section>
 
-          <section aria-labelledby="reels-harder-heading">
+          <section aria-labelledby="reels-audio-heading">
             <h2
-              id="reels-harder-heading"
+              id="reels-audio-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              Why Reels can be harder to transcribe than TikTok
+              How Instagram Reels to text handles captions, speech, and music
             </h2>
             <p className="mt-4">
-              The steps are the same for both platforms, but Instagram Reels are
-              often harder to fetch and transcribe than TikTok videos. Many
-              Reels are limited to a private or close-friends audience, or they
-              can only be opened while signed in. When the tool cannot reach the
-              video, it reports that the video is private, or that it could not
-              be reached and may be private or deleted. A Reel that is not
-              publicly viewable will not produce a transcript, even if you can
-              watch it in your own Instagram account.
+              When you submit a public Reel, the tool first checks whether
+              official or automatic captions are attached to the video. If a
+              usable caption track exists, those cues are converted into plain
+              text and timestamped subtitle files. If the Reel has no captions,
+              the audio is transcribed with Deepgram so you still get a clean
+              Instagram Reels transcript even when the creator never published
+              subtitles.
             </p>
             <p className="mt-4">
-              Reels are also more often built around a music track than around
-              speech. If official or automatic captions are attached to the
-              Reel, those captions can be turned into text and timestamped
-              files. If there is no usable caption track, the audio is sent to
-              speech-to-text. When no captions are available, that step uses
-              Deepgram. It can capture spoken words even when the creator never
-              published a subtitle file. It cannot invent dialogue from a song,
-              and it cannot read text that exists only in the picture.
+              Instagram Reels are more often private, login-gated, or built
+              around background music than spoken commentary. A Reel that
+              requires signing in to view cannot be fetched, even if you can
+              watch it inside your own Instagram account. Speech-to-text also
+              cannot invent dialogue from a music track or read words that
+              appear only as burned-in on-screen text. For best results with
+              Instagram Reels to text, choose a public Reel where someone is
+              clearly speaking.
             </p>
           </section>
 
@@ -193,97 +227,67 @@ export default function InstagramReelsTranscriptPage() {
               id="reels-limits-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              What happens with private Reels, music-only Reels, long videos,
-              and missing audio
+              Private Reels, music-only clips, and the 3-minute limit
             </h2>
             <p className="mt-4">
-              If the Reel is private, friends-only, or otherwise not publicly
-              available, the response is: “This video is private.” If the Reel
-              has been deleted or cannot be opened, you may instead see: “This
-              video could not be reached. It may be private or deleted.” Switch
-              to a public Reel that anyone can open from the link, without
-              signing in. If the Reel is longer than three minutes, the request
-              is rejected before a new speech-to-text run, with the message:
-              “This video is longer than 3 minutes. The free limit is 3
-              minutes.” That cutoff is a hard limit, not a preview of a longer
-              transcript. Choose a shorter public Reel, or use a clip that
-              stays within 180 seconds. The homepage explains the{" "}
-              <Link href="/#free-quota" className={linkClass}>
-                free quota and the 3-minute limit
-              </Link>{" "}
-              in more detail.
+              If a Reel is private or restricted to close friends, the form
+              returns: “This video is private.” If a Reel was deleted or cannot
+              be opened publicly, you may see: “This video could not be reached.
+              It may be private or deleted.” Reels longer than three minutes are
+              rejected before speech-to-text runs with: “This video is longer
+              than 3 minutes. The free limit is 3 minutes.” That 180-second
+              cutoff is a hard limit rather than a partial preview.
             </p>
             <p className="mt-4">
-              If the Reel has no usable audio or captions, the response is:
-              “This video has no usable audio or captions.” That is the usual
-              result for a music-only Reel, a silent clip, a clip that is too
-              quiet, or a clip whose words exist only as on-screen text. Try a
-              Reel in which someone is clearly speaking. On-screen captions
-              burned into the video are part of the picture; they are not a
-              caption track the tool can import. A request can also time out
-              while the Reel is being fetched or transcribed. In that case the
-              message is: “Processing timed out. Please try again.” Do not keep
-              pressing the button on a Reel that just failed. Repeated failures
-              are capped so the same broken link cannot keep using
-              speech-to-text capacity. If too many attempts have already failed
-              today, you will see: “Too many failed transcript attempts today.
-              Please try again tomorrow.”
+              If a clip is silent, music-only, or contains only on-screen text,
+              the response is: “This video has no usable audio or captions.” If
+              fetching or transcribing takes too long, you will see: “Processing
+              timed out. Please try again.” Avoid retrying the same broken Reel
+              repeatedly—failed attempts are capped per day, and hitting that
+              cap shows: “Too many failed transcript attempts today. Please try
+              again tomorrow.”
             </p>
           </section>
 
-          <section aria-labelledby="reels-compare-heading">
+          <section aria-labelledby="reels-quota-heading">
             <h2
-              id="reels-compare-heading"
+              id="reels-quota-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              Free daily limit, cache, and how this compares with TikTok
+              Free Instagram Reels transcript quota and 7-day cache
             </h2>
             <p className="mt-4">
-              Unpaid transcripts are limited to three new public videos per IP
-              address each UTC day. The same cap applies to TikTok and Reels
-              together; it is not three of each. When you reach the cap, the
-              form shows: “You&apos;ve reached today&apos;s free limit of 3
-              transcripts. Please try again tomorrow.” A cached result does not
-              consume that daily quota. Successful transcripts are stored for
-              seven days by video id. If you paste the same public Reel again
-              during that window, the earlier text, SRT, and VTT come back from
-              cache.
+              Every free Instagram Reels transcript uses a shared daily
+              allowance of three new public videos per IP address each UTC day—a
+              practical quota when you want to pull scripts from a few creator
+              Reels or turn quick product demos into written notes without
+              creating an account. When you hit the daily cap, the tool shows:
+              “You&apos;ve reached today&apos;s free limit of 3 transcripts.
+              Please try again tomorrow.”
             </p>
             <p className="mt-4">
-              On both platforms you paste a public link into the same form, then
-              copy or download TXT, SRT, or VTT. Captions are used when they
-              exist; otherwise the audio is transcribed with Deepgram. The
-              differences are mostly about the link and the fetch. TikTok
-              accepts long /@username/video/ links, /share/video/ links, and
-              short links such as vm.tiktok.com, vt.tiktok.com, and
-              tiktok.com/t/. Instagram accepts /reel/, /reels/, and /p/ links,
-              including username-prefixed versions, plus Instagram share and
-              /s/ links after they redirect to a recognized Reel or post. Reels
-              are more likely to be private, login-gated, or music-only, so they
-              fail more often at the fetch or audio stage.
-            </p>
-            <p className="mt-4">
-              If you need a shorter overview, the{" "}
-              <Link href="/#faq" className={linkClass}>
-                homepage FAQ
+              Successful transcripts are cached for seven days by video ID, and
+              a cached result does not consume your daily quota. If you paste
+              the same Reel again within seven days to copy a quote or download
+              Instagram Reels transcript files in another format, the stored
+              text, SRT, and VTT come back immediately. The{" "}
+              <Link href="/#free-quota" className={linkClass}>
+                free quota details
               </Link>{" "}
-              includes a{" "}
-              <Link href="/#faq-reels" className={linkClass}>
-                brief answer about Instagram Reels
-              </Link>. When you have a public, spoken, under-three-minute Reel link, go
-              back to the{" "}
-              <Link href="/#get-transcript" className={linkClass}>
-                homepage form
-              </Link>{" "}
-              and paste it there.
+              apply across both Reels and our{" "}
+              <Link href="/" className={linkClass}>
+                TikTok transcript generator
+              </Link>
+              , so the same three-video daily cap covers both platforms.
             </p>
           </section>
+
           <section className="mt-12" aria-labelledby="reels-faq-heading">
             <h2
               id="reels-faq-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              FAQ
+              Instagram Reels Transcript FAQ
             </h2>
             <dl className="mt-6 space-y-6 text-base leading-7 text-muted">
               {faq.map((item) => (
