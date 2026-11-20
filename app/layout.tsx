@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     description: defaultDescription,
     images: ["/og-image.png"],
   },
+  other: {
+    "google-adsense-account": "ca-pub-2537393626914252",
+  },
 };
 
 function isSafeGa4Id(value: string | undefined): value is string {
@@ -60,6 +63,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2537393626914252"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-full bg-background font-sans text-foreground">
         {isSafeGa4Id(ga4Id) ? (
           <>
