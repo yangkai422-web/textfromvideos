@@ -132,13 +132,14 @@ export default function Home() {
               you need.
             </p>
             <p className="mt-4">
-              This TikTok video to text flow is built for short, public clips.
-              You do not need to install an app, create an account, or extract
-              the audio yourself. If the video is public, includes spoken words,
-              and is no longer than three minutes, the generator will try to
-              return a clean transcript. Repeating the same video later is
-              faster, because a successful result is stored for seven days and
-              served again without another speech-to-text run.
+              This free TikTok transcript generator online is built for short,
+              public clips. You do not need to install an app, create an
+              account, or extract the audio yourself to convert TikTok video to
+              text. If the video is public, includes spoken words, and is no
+              longer than three minutes, the generator will try to return a
+              clean transcript. Repeating the same video later is faster,
+              because a successful result is stored for seven days and served
+              again without another speech-to-text run.
             </p>
             <p className="mt-4">
               The same form also accepts a public Instagram Reels link. Private

@@ -51,7 +51,7 @@ export default function AboutPage() {
         <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
           textfromvideos.com is a free website that turns a public TikTok or
           Instagram Reels link into a written transcript. Last updated November
-          16, 2026.
+          20, 2026.
         </p>
 
         <article className="mt-16 space-y-12 text-base leading-7 text-muted">
@@ -114,18 +114,26 @@ export default function AboutPage() {
               id="about-operator-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              Who operates the site
+              Who operates the site and how to reach us
             </h2>
             <p className="mt-4">
               This site is operated by the operator of textfromvideos.com. A
-              separate company name, mailing address, and support email are not
-              published here. There are no user accounts and no payments on the
-              site. The{" "}
+              separate company name and mailing address are not published here.
+              There are no user accounts and no payments on the site. If you
+              have questions, feedback, or inquiries about the site, you can
+              contact the operator by email at{" "}
+              <a href="mailto:yangkai422@gmail.com" className={linkClass}>
+                yangkai422@gmail.com
+              </a>
+              .
+            </p>
+            <p className="mt-4">
+              The{" "}
               <Link href="/privacy/" className={linkClass}>
                 privacy policy
               </Link>{" "}
-              describes the video URLs, IP addresses, transcripts, and
-              analytics events the tool records. The{" "}
+              describes the video URLs, IP addresses, transcripts, advertising
+              cookies, and analytics events associated with the site. The{" "}
               <Link href="/terms/" className={linkClass}>
                 terms of use
               </Link>{" "}

@@ -51,7 +51,7 @@ export default function PrivacyPage() {
         <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
           This page describes what textfromvideos.com collects when you use the
           transcript tool, and how that information is used. It reflects the
-          site as it works today. Last updated November 16, 2026.
+          site as it works today. Last updated November 20, 2026.
         </p>
 
         <article className="mt-16 space-y-12 text-base leading-7 text-muted">
@@ -165,17 +165,40 @@ export default function PrivacyPage() {
               id="privacy-cookies-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              Cookies and third-party analytics
+              Advertising, cookies, and third-party analytics
             </h2>
             <p className="mt-4">
-              The transcript tool does not require cookies, and the site does
-              not use first-party advertising cookies or account cookies. The
+              This site uses Google AdSense to display advertisements. Google
+              and other third-party vendors may use cookies, including the
+              DoubleClick cookie, to serve personalized ads based on your prior
+              visits to this website or other websites on the internet. You can
+              opt out of personalized advertising at any time through{" "}
+              <a
+                href="https://adssettings.google.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkClass}
+              >
+                Google Ads Settings
+              </a>
+              , and you can review how Google uses data in advertising on the{" "}
+              <a
+                href="https://policies.google.com/technologies/ads"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkClass}
+              >
+                Google Advertising Privacy &amp; Terms
+              </a>{" "}
+              page.
+            </p>
+            <p className="mt-4">
+              The transcript tool itself does not require account cookies. The
               first-party analytics events listed above are stored on our
-              servers. The site can optionally load Google Analytics 4 or
+              servers. The site can also optionally load Google Analytics 4 or
               Plausible if those services have been configured. When those
               scripts are present, the relevant provider may set cookies or
-              collect usage data under its own policy. They are not required
-              for the tool to work.
+              collect usage data under its own policy.
             </p>
           </section>
 
@@ -208,8 +231,11 @@ export default function PrivacyPage() {
               cache hit only returns an existing transcript for seven days; it
               does not start a new speech-to-text run. Because there are no
               accounts, there is no login where you can view or delete a
-              personal history. This site does not publish a support email
-              address.
+              personal history. For privacy questions, you can email{" "}
+              <a href="mailto:yangkai422@gmail.com" className={linkClass}>
+                yangkai422@gmail.com
+              </a>
+              .
             </p>
           </section>
 
