@@ -118,6 +118,28 @@ export default function Home() {
         </div>
 
         <article className="mt-16 space-y-14 text-base leading-7 text-muted">
+          <section id="overview" aria-labelledby="overview-heading">
+            <h2
+              id="overview-heading"
+              className="text-2xl font-semibold tracking-tight text-ink"
+            >
+              Get a clean TikTok transcript in seconds
+            </h2>
+            <p className="mt-4">
+              Use this free TikTok transcript generator whenever you need an
+              accurate TikTok transcript from a public short-form video without
+              typing every line by hand. Paste any public TikTok link above and
+              the tool checks for an attached caption track first, then runs
+              speech-to-text audio transcription when no captions exist. In
+              seconds, your TikTok transcript is ready to copy as plain text or
+              download as TXT, SRT, or VTT for quotes, notes, scripts, and
+              subtitles. Every IP gets three free new transcripts per UTC day
+              for clips up to three minutes, and cached TikTok transcript
+              results stay available for seven days without using another free
+              slot.
+            </p>
+          </section>
+
           <section id="how-to" aria-labelledby="how-to-heading">
             <h2
               id="how-to-heading"
@@ -179,9 +201,12 @@ export default function Home() {
               again without another speech-to-text run.
             </p>
             <p className="mt-4">
-              The same form also accepts a public Instagram Reels link. Private
-              videos, deleted videos, and clips with no spoken audio cannot be
-              turned into text.
+              The same form also accepts a{" "}
+              <Link href="/instagram-reels-transcript/" className={linkClass}>
+                public Instagram Reels link
+              </Link>
+              . Private videos, deleted videos, and clips with no spoken audio
+              cannot be turned into text.
             </p>
           </section>
 
@@ -383,7 +408,12 @@ export default function Home() {
               video already failed recently, the tool will not keep resubmitting
               it to speech-to-text. Try a different public clip, or wait and try
               again later, instead of clicking Get transcript over and over on
-              the same failing URL.
+              the same failing URL. You can also read how the service handles
+              public links and speech-to-text on the{" "}
+              <Link href="/about/" className={linkClass}>
+                About page
+              </Link>
+              .
             </p>
           </section>
 

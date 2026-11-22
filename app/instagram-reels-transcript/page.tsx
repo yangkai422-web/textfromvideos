@@ -259,8 +259,11 @@ export default function InstagramReelsTranscriptPage() {
               /@username/video/ with a numeric ID or short redirect domains like
               vm.tiktok.com and tiktok.com/t/, whereas Instagram mixes short
               alphanumeric codes across /reel/, /reels/, /p/, and /s/ paths.
-              Both formats are normalized automatically here as long as the
-              destination video is public.
+              Both formats are normalized automatically here—or on our{" "}
+              <Link href="/" className={linkClass}>
+                free TikTok transcript generator
+              </Link>
+              —as long as the destination video is public.
             </p>
           </section>
 
@@ -277,7 +280,12 @@ export default function InstagramReelsTranscriptPage() {
               usable caption track exists, those cues are converted into plain
               text and timestamped subtitle files. If the Reel has no captions,
               the audio is transcribed with Deepgram so you still get a clean
-              written copy even when the creator never published subtitles.
+              written copy even when the creator never published subtitles—just
+              like our{" "}
+              <Link href="/" className={linkClass}>
+                TikTok video to text tool
+              </Link>{" "}
+              on the homepage.
             </p>
             <p className="mt-4">
               Reels are more often private, login-gated, or built around

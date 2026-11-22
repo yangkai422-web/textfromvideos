@@ -117,8 +117,98 @@ export class TextFromVideosContainer extends DurableObject<Env> {
   }
 }
 
+const STATIC_CACHE_CONTROL = "public, max-age=31536000, immutable";
+const PAGE_CACHE_CONTROL =
+  "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400";
+
+function isCacheablePath(pathname: string): boolean {
+  if (pathname === "/api" || pathname.startsWith("/api/")) return false;
+  if (pathname === "/health" || pathname.startsWith("/health/")) return false;
+  return true;
+}
+
+function isNextRscRequest(request: Request): boolean {
+  return (
+    request.headers.has("rsc") ||
+    request.headers.has("next-router-prefetch") ||
+    request.headers.has("next-router-state-tree") ||
+    request.headers.has("next-action")
+  );
+}
+
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
-    return env.APP_CONTAINER.getByName("app").fetch(request);
+  async fetch(
+    request: Request,
+    env: Env,
+    ctx: ExecutionContext,
+  ): Promise<Response> {
+    const url = new URL(request.url);
+    const isGetOrHead = request.method === "GET" || request.method === "HEAD";
+
+    if (
+      !isGetOrHead ||
+      !isCacheablePath(url.pathname) ||
+      isNextRscRequest(request)
+    ) {
+      return env.APP_CONTAINER.getByName("app").fetch(request);
+    }
+
+    const cache = caches.default;
+    const cacheUrl = new URL(url.origin + url.pathname);
+    const cacheKey = new Request(cacheUrl.toString(), { method: "GET" });
+
+    const cached = await cache.match(cacheKey);
+    if (cached) {
+      const headers = new Headers(cached.headers);
+      headers.set("X-Worker-Cache", "HIT");
+      return new Response(request.method === "HEAD" ? null : cached.body, {
+        status: cached.status,
+        statusText: cached.statusText,
+        headers,
+      });
+    }
+
+    const upstream = await env.APP_CONTAINER.getByName("app").fetch(request);
+    if (upstream.status !== 200 || upstream.headers.has("set-cookie")) {
+      return upstream;
+    }
+
+    const isImmutableStatic = url.pathname.startsWith("/_next/static/");
+    const cacheHeaders = new Headers(upstream.headers);
+    cacheHeaders.set(
+      "Cache-Control",
+      isImmutableStatic ? STATIC_CACHE_CONTROL : PAGE_CACHE_CONTROL,
+    );
+    cacheHeaders.delete("pragma");
+    cacheHeaders.delete("expires");
+
+    if (request.method === "GET") {
+      const [clientBody, cacheBody] = upstream.body
+        ? upstream.body.tee()
+        : [null, null];
+
+      const toCache = new Response(cacheBody, {
+        status: upstream.status,
+        statusText: upstream.statusText,
+        headers: cacheHeaders,
+      });
+      ctx.waitUntil(cache.put(cacheKey, toCache));
+
+      const clientHeaders = new Headers(cacheHeaders);
+      clientHeaders.set("X-Worker-Cache", "MISS");
+      return new Response(clientBody, {
+        status: upstream.status,
+        statusText: upstream.statusText,
+        headers: clientHeaders,
+      });
+    }
+
+    const headHeaders = new Headers(cacheHeaders);
+    headHeaders.set("X-Worker-Cache", "MISS");
+    return new Response(null, {
+      status: upstream.status,
+      statusText: upstream.statusText,
+      headers: headHeaders,
+    });
   },
 };
