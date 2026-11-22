@@ -47,7 +47,7 @@ export function TranscriptResult({
   if (!result) {
     return (
       <section
-        className="rounded-2xl border border-line bg-card p-5 sm:p-6"
+        className="rounded-2xl border border-line bg-card p-5 shadow-sm sm:p-6"
         aria-live="polite"
       >
         <h2 className="text-sm font-medium tracking-wide text-muted uppercase">
@@ -62,7 +62,7 @@ export function TranscriptResult({
 
   return (
     <section
-      className="rounded-2xl border border-line bg-card p-5 sm:p-6"
+      className="rounded-2xl border border-line bg-card p-5 shadow-sm sm:p-6"
       aria-live="polite"
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

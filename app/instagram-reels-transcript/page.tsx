@@ -92,7 +92,8 @@ const jsonLd = {
   ],
 };
 
-const linkClass = "font-medium text-accent hover:text-accent-hover";
+const linkClass =
+  "font-medium text-accent underline decoration-accent/60 underline-offset-4 transition-colors hover:text-accent-hover hover:decoration-accent-hover";
 
 export default function InstagramReelsTranscriptPage() {
   return (
@@ -100,10 +101,10 @@ export default function InstagramReelsTranscriptPage() {
       <SiteHeader />
 
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-5 pb-16">
-        <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+        <h1 className="max-w-2xl text-[32px] leading-[1.15] font-semibold tracking-tight text-ink sm:text-5xl sm:leading-[1.1]">
           Instagram Reels Transcript
         </h1>
-        <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
+        <p className="mt-3 max-w-2xl text-base leading-7 text-muted sm:mt-4 sm:text-lg sm:leading-8">
           Paste a public Reel URL below to convert Instagram Reels to text in
           seconds. This free Instagram Reels transcript tool runs in your
           browser with no sign-up—copy the spoken words or download Instagram
@@ -111,7 +112,7 @@ export default function InstagramReelsTranscriptPage() {
           minutes are supported; uploaded video files are not accepted.
         </p>
 
-        <div id="get-transcript" className="mt-8">
+        <div id="get-transcript" className="mt-6 sm:mt-8">
           <TranscriptForm
             placeholder="Paste a public Instagram Reels link"
             emptyError="Paste a public Instagram Reels or TikTok URL first."
@@ -129,16 +130,51 @@ export default function InstagramReelsTranscriptPage() {
             </h2>
             <p className="mt-4">
               Getting an Instagram Reels transcript takes three steps on this
-              page. First, open the Reel in the Instagram app or on the web and
-              copy the link to that single video, not a profile or hashtag feed.
-              Second, paste the URL into the{" "}
-              <a href="#get-transcript" className={linkClass}>
-                form above
-              </a>{" "}
-              and click Get transcript. Third, wait a few seconds for the spoken
-              text to appear right below the box.
+              page:
             </p>
-            <p className="mt-4">
+            <ol className="mt-5 space-y-3">
+              <li className="flex gap-3.5 rounded-xl border border-line bg-card p-4 shadow-xs">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                  1
+                </span>
+                <div>
+                  <p className="font-medium text-ink">Copy the single Reel link</p>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    Open the Reel in the Instagram app or on the web and copy
+                    the link to that single video, not a profile or hashtag
+                    feed.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-3.5 rounded-xl border border-line bg-card p-4 shadow-xs">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                  2
+                </span>
+                <div>
+                  <p className="font-medium text-ink">Paste into the form above</p>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    Paste the URL into the{" "}
+                    <a href="#get-transcript" className={linkClass}>
+                      form above
+                    </a>{" "}
+                    and click Get transcript.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-3.5 rounded-xl border border-line bg-card p-4 shadow-xs">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                  3
+                </span>
+                <div>
+                  <p className="font-medium text-ink">Copy or save your files</p>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    Wait a few seconds for the spoken text to appear right below
+                    the box, then copy it or download TXT, SRT, or VTT.
+                  </p>
+                </div>
+              </li>
+            </ol>
+            <p className="mt-5">
               Use this Reels transcript generator when you want to repost a
               Reel’s main takeaway to X as plain text instead of sharing a video
               link, or pull an exact quote into a newsletter or research doc.
@@ -152,15 +188,41 @@ export default function InstagramReelsTranscriptPage() {
             </h3>
             <p className="mt-3">
               Once the text loads, you can copy it in one click or save files in
-              three formats. Grab TXT when you want clean paragraphs to paste
-              into X posts, blog drafts, or team notes. Choose SRT or VTT when
-              you need timestamped captions to import into a video editor or web
-              player. You can also check the{" "}
+              three formats. Check the{" "}
               <Link href="/#formats" className={linkClass}>
                 TXT, SRT, and VTT format guide
               </Link>{" "}
-              for details on when each subtitle wrapper fits best.
+              for details on when each subtitle wrapper fits best:
             </p>
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="rounded-2xl border border-line bg-card p-4 shadow-xs">
+                <span className="inline-block rounded-md bg-accent/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-accent">
+                  TXT
+                </span>
+                <p className="mt-2.5 text-sm leading-6 text-muted">
+                  Clean paragraphs to paste into X posts, blog drafts,
+                  newsletters, or team notes without timecodes.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-line bg-card p-4 shadow-xs">
+                <span className="inline-block rounded-md bg-accent/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-accent">
+                  SRT
+                </span>
+                <p className="mt-2.5 text-sm leading-6 text-muted">
+                  Timestamped subtitle cues ready to import into desktop video
+                  editors and captioning tools.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-line bg-card p-4 shadow-xs">
+                <span className="inline-block rounded-md bg-accent/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-accent">
+                  VTT
+                </span>
+                <p className="mt-2.5 text-sm leading-6 text-muted">
+                  WebVTT captions built for HTML5 video embeds and browser-based
+                  media players.
+                </p>
+              </div>
+            </div>
           </section>
 
           <section aria-labelledby="reels-links-heading">

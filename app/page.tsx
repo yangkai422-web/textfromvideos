@@ -43,7 +43,7 @@ const faq = [
     id: "faq-tiktok",
     question: "How do I get a transcript from a TikTok video?",
     answer:
-      "Paste a public TikTok link into the form above and click Get transcript, then copy the text or download TXT, SRT, or VTT.",
+      "Paste a public TikTok link into the form above and click Get transcript, then copy the text or download TXT, SRT, or VTT. That is the fastest way to learn how to get a tiktok video transcript without installing software.",
   },
   {
     id: "faq-reels",
@@ -94,23 +94,26 @@ const jsonLd = {
   ],
 };
 
+const linkClass =
+  "font-medium text-accent underline decoration-accent/60 underline-offset-4 transition-colors hover:text-accent-hover hover:decoration-accent-hover";
+
 export default function Home() {
   return (
     <div className="flex min-h-full flex-col">
       <SiteHeader />
 
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-5 pb-16">
-        <h1 className="max-w-xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+        <h1 className="max-w-xl text-[32px] leading-[1.15] font-semibold tracking-tight text-ink sm:text-5xl sm:leading-[1.1]">
           Free TikTok Transcript Generator
         </h1>
-        <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
+        <p className="mt-3 max-w-2xl text-base leading-7 text-muted sm:mt-4 sm:text-lg sm:leading-8">
           Paste a public TikTok or Instagram Reels link and get a clean text
           transcript in seconds. Copy it, or download TXT, SRT, or VTT. This
           free TikTok video to text tool works on short public videos, including
           clips that have no captions of their own.
         </p>
 
-        <div id="get-transcript" className="mt-8">
+        <div id="get-transcript" className="mt-6 sm:mt-8">
           <TranscriptForm />
         </div>
 
@@ -123,17 +126,51 @@ export default function Home() {
               How to get a TikTok transcript
             </h2>
             <p className="mt-4">
-              Getting a TikTok transcript from a public video takes three steps.
-              First, copy the video link from the TikTok app or website. You can
-              use a long link that includes the creator’s username, a share
-              link, or a short link. Second, paste that URL into the box at the
-              top of this page and click Get transcript. Third, wait a few
-              seconds for the text to appear, then copy it or download the file
-              you need.
+              If you are wondering how to get a tiktok video transcript from a
+              public clip, it takes three quick steps:
             </p>
-            <p className="mt-4">
-              This free TikTok transcript generator online is built for short,
-              public clips. You do not need to install an app, create an
+            <ol className="mt-5 space-y-3">
+              <li className="flex gap-3.5 rounded-xl border border-line bg-card p-4 shadow-xs">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                  1
+                </span>
+                <div>
+                  <p className="font-medium text-ink">Copy the public video link</p>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    Copy the link from the TikTok app or website. You can use a
+                    long link with the creator’s username, a share link, or a
+                    short link.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-3.5 rounded-xl border border-line bg-card p-4 shadow-xs">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                  2
+                </span>
+                <div>
+                  <p className="font-medium text-ink">Paste the URL and submit</p>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    Paste that URL into the box at the top of this page and
+                    click Get transcript.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-3.5 rounded-xl border border-line bg-card p-4 shadow-xs">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                  3
+                </span>
+                <div>
+                  <p className="font-medium text-ink">Copy or download your transcript</p>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    Wait a few seconds for the spoken text to appear, then copy
+                    it or download the TXT, SRT, or VTT file you need.
+                  </p>
+                </div>
+              </li>
+            </ol>
+            <p className="mt-5">
+              This tool offers tiktok video to text transcription free for
+              short, public clips. You do not need to install an app, create an
               account, or extract the audio yourself to convert TikTok video to
               text. If the video is public, includes spoken words, and is no
               longer than three minutes, the generator will try to return a
@@ -186,11 +223,11 @@ export default function Home() {
               download a timestamped file. If you need the dialogue in a
               document, start with TXT. If you want to caption the video later,
               use{" "}
-              <a href="#formats" className="font-medium text-accent hover:text-accent-hover">
+              <a href="#formats" className={linkClass}>
                 SRT or VTT
               </a>
               . The{" "}
-              <a href="#troubleshooting" className="font-medium text-accent hover:text-accent-hover">
+              <a href="#troubleshooting" className={linkClass}>
                 troubleshooting section
               </a>{" "}
               explains what to do when a request fails.
@@ -210,31 +247,50 @@ export default function Home() {
               Choose the format that matches the job, not the format with the
               longest feature list.
             </p>
-            <p className="mt-4">
-              TXT is the clean reading version. It is a plain-text file with the
-              spoken words and punctuation, without timecodes. Use TXT when you
-              want to paste a quote into a document, an email, a script, or a
-              blog post. The on-page Copy text button also gives you this same
-              plain transcript, so you can grab it without downloading a file.
-            </p>
-            <p className="mt-4">
-              SRT is a subtitle file. It breaks the speech into timed cues so a
-              video editor can show captions at the right moment. Use SRT when
-              you want to upload captions to an editor, a desktop player, or a
-              platform that asks for a .srt file. The timestamps come from
-              word-level speech timing when the transcript is produced from
-              audio, or from the original caption cues when a caption track was
-              available.
-            </p>
-            <p className="mt-4">
-              VTT, or WebVTT, is the web-friendly subtitle format. It also
-              includes timestamps, but it is commonly used with HTML5 video and
-              web players. If you are adding captions on a website or in a
-              player that prefers .vtt files, download VTT instead of SRT. The
-              spoken content is the same; only the file wrapper and timestamp
-              punctuation differ.
-            </p>
-            <p className="mt-4">
+            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="rounded-2xl border border-line bg-card p-5 shadow-xs">
+                <span className="inline-block rounded-md bg-accent/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-accent">
+                  TXT
+                </span>
+                <h3 className="mt-3 text-base font-semibold text-ink">
+                  Clean reading text
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted">
+                  A plain-text file with spoken words and punctuation, without
+                  timecodes. Use TXT to paste a quote into a document, email,
+                  script, or blog post—the on-page Copy text button gives you
+                  this same plain transcript.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-line bg-card p-5 shadow-xs">
+                <span className="inline-block rounded-md bg-accent/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-accent">
+                  SRT
+                </span>
+                <h3 className="mt-3 text-base font-semibold text-ink">
+                  Editor subtitle file
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted">
+                  Breaks speech into timed cues for video editors, desktop
+                  players, and platforms that ask for a .srt file. Timestamps
+                  come from word-level speech timing or the original caption
+                  cues.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-line bg-card p-5 shadow-xs">
+                <span className="inline-block rounded-md bg-accent/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-accent">
+                  VTT
+                </span>
+                <h3 className="mt-3 text-base font-semibold text-ink">
+                  WebVTT for web players
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted">
+                  The web-friendly subtitle format built for HTML5 video and
+                  browser players. The spoken content matches SRT; only the file
+                  wrapper and timestamp punctuation differ for .vtt support.
+                </p>
+              </div>
+            </div>
+            <p className="mt-5">
               You do not have to pick only one. You can copy the text now, then
               come back and download TikTok transcript files in SRT or VTT if
               you later need captions. All three formats are created from the
@@ -270,7 +326,7 @@ export default function Home() {
               link to a single Reel, including instagram.com/reel/,
               instagram.com/reels/, or a /p/ post link that points to a Reel.
               The{" "}
-              <Link href="/instagram-reels-transcript/" className="font-medium text-accent hover:text-accent-hover">
+              <Link href="/instagram-reels-transcript/" className={linkClass}>
                 Instagram Reels transcript guide
               </Link>{" "}
               explains those URL shapes in more detail, including share links
@@ -279,7 +335,7 @@ export default function Home() {
               than three minutes. A music-only Reel, a private Reel, or a Reel
               that cannot be reached will not produce a transcript. That guide
               also covers{" "}
-              <Link href="/instagram-reels-transcript/" className="font-medium text-accent hover:text-accent-hover">
+              <Link href="/instagram-reels-transcript/" className={linkClass}>
                 why Reels can be harder to transcribe than TikTok
               </Link>{" "}
               and how Reels share the same free daily limit.
@@ -301,14 +357,15 @@ export default function Home() {
               Free quota and the 3-minute limit
             </h2>
             <p className="mt-4">
-              The generator is free for short public videos, with two hard
-              limits. First, unpaid transcripts are capped at three cache-miss
-              requests per IP address each UTC day. If you reach that cap, you
-              will see a clear message that today’s free limit is 3 transcripts
-              and that you can try again tomorrow. Second, the free duration
-              cutoff is three minutes. If a video is longer than 180 seconds,
-              the request is rejected before speech-to-text runs, with a message
-              that the free limit is 3 minutes.
+              Every visitor can use our tiktok video to text transcription free
+              for short public videos, with two hard limits. First, unpaid
+              transcripts are capped at three cache-miss requests per IP address
+              each UTC day. If you reach that cap, you will see a clear message
+              that today’s free limit is 3 transcripts and that you can try
+              again tomorrow. Second, the free duration cutoff is three minutes.
+              If a video is longer than 180 seconds, the request is rejected
+              before speech-to-text runs, with a message that the free limit is
+              3 minutes.
             </p>
             <p className="mt-4">
               A second request for the same video does not use another free slot
@@ -342,7 +399,7 @@ export default function Home() {
               visibility, its length, or its audio. Start with the link. Make
               sure you pasted a single video URL, not a profile or a search
               page, and that it is one of the{" "}
-              <a href="#supported-links" className="font-medium text-accent hover:text-accent-hover">
+              <a href="#supported-links" className={linkClass}>
                 supported link formats
               </a>
               . If a short link does not resolve, try the full video page URL
@@ -353,7 +410,7 @@ export default function Home() {
               tool cannot reach it and will say so. Switch to a public video. If
               the video is longer than three minutes, shorten the public clip or
               choose a shorter one; the free{" "}
-              <a href="#free-quota" className="font-medium text-accent hover:text-accent-hover">
+              <a href="#free-quota" className={linkClass}>
                 3-minute cutoff
               </a>{" "}
               is a hard limit, not a preview of a longer transcript.
