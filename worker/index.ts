@@ -117,6 +117,7 @@ export class TextFromVideosContainer extends DurableObject<Env> {
   }
 }
 
+const CACHE_VERSION = "2026-11-22-v2";
 const STATIC_CACHE_CONTROL = "public, max-age=31536000, immutable";
 const PAGE_CACHE_CONTROL =
   "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400";
@@ -155,6 +156,7 @@ export default {
 
     const cache = caches.default;
     const cacheUrl = new URL(url.origin + url.pathname);
+    cacheUrl.searchParams.set("__cv", CACHE_VERSION);
     const cacheKey = new Request(cacheUrl.toString(), { method: "GET" });
 
     const cached = await cache.match(cacheKey);

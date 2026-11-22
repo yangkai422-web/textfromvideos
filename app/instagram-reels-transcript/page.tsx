@@ -182,6 +182,20 @@ export default function InstagramReelsTranscriptPage() {
               to study a creator’s hook, summarize a short tutorial, or search
               what was said without replaying the clip line by line.
             </p>
+            <figure className="mt-6 rounded-2xl border border-line bg-card p-3 shadow-xs sm:p-4">
+              <img
+                src="/images/instagram-reels-transcript-example.webp"
+                alt="Instagram Reels transcript result showing a public Reel link converted into plain text with Copy text, TXT, SRT, and VTT download buttons"
+                width={760}
+                height={312}
+                loading="lazy"
+                className="h-auto w-full rounded-xl border border-line/70"
+              />
+              <figcaption className="mt-2.5 text-xs text-muted">
+                Real output from a public Instagram Reel: paste the link, wait a
+                few seconds, then copy or download TXT, SRT, and VTT.
+              </figcaption>
+            </figure>
 
             <h3 className="mt-8 text-xl font-semibold tracking-tight text-ink">
               Download Instagram Reels transcript files in TXT, SRT, or VTT
@@ -283,9 +297,9 @@ export default function InstagramReelsTranscriptPage() {
               written copy even when the creator never published subtitles—just
               like our{" "}
               <Link href="/" className={linkClass}>
-                TikTok video to text tool
+                TikTok transcript
               </Link>{" "}
-              on the homepage.
+              tool on the homepage.
             </p>
             <p className="mt-4">
               Reels are more often private, login-gated, or built around

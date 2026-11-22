@@ -43,13 +43,13 @@ const faq = [
     id: "faq-tiktok",
     question: "How do I get a transcript from a TikTok video?",
     answer:
-      "Paste a public TikTok link into the form above and click Get transcript, then copy the text or download TXT, SRT, or VTT. That is the fastest way to learn how to get a tiktok video transcript without installing software.",
+      "Paste a public TikTok link above and click Get transcript to copy text or download TXT, SRT, or VTT.",
   },
   {
     id: "faq-reels",
     question: "Does this work with Instagram Reels?",
     answer:
-      "Yes. Public Instagram Reels up to three minutes with spoken audio work in the same form, or on the dedicated Instagram Reels transcript page.",
+      "Yes. Public Reels up to three minutes with spoken audio work here or on the Reels page.",
   },
   {
     id: "faq-youtube",
@@ -60,7 +60,7 @@ const faq = [
     id: "faq-free",
     question: "Is it free?",
     answer:
-      "Yes. Up to three new public videos per IP each UTC day (max 3 minutes each); cached videos from the past seven days do not count.",
+      "Yes—three new public videos per IP each UTC day (max 3 minutes). Seven-day cached results do not count.",
   },
 ];
 
@@ -126,18 +126,29 @@ export default function Home() {
               Get a clean TikTok transcript in seconds
             </h2>
             <p className="mt-4">
-              Use this free TikTok transcript generator whenever you need an
-              accurate TikTok transcript from a public short-form video without
-              typing every line by hand. Paste any public TikTok link above and
-              the tool checks for an attached caption track first, then runs
-              speech-to-text audio transcription when no captions exist. In
-              seconds, your TikTok transcript is ready to copy as plain text or
-              download as TXT, SRT, or VTT for quotes, notes, scripts, and
-              subtitles. Every IP gets three free new transcripts per UTC day
-              for clips up to three minutes, and cached TikTok transcript
-              results stay available for seven days without using another free
-              slot.
+              Whether you search for a TikTok transcript or a tik tok
+              transcript, this free TikTok transcript generator and TikTok
+              transcript maker turns public short-form videos into clean text in
+              seconds. Paste a public link above and the tool checks captions
+              first, then runs speech-to-text when no captions exist. Copy your
+              TikTok transcript or download TXT, SRT, or VTT for quotes, notes,
+              and subtitles—three free new videos per IP each UTC day (up to
+              three minutes), with seven-day caching.
             </p>
+            <figure className="mt-6 rounded-2xl border border-line bg-card p-3 shadow-xs sm:p-4">
+              <img
+                src="/images/tiktok-transcript-example.webp"
+                alt="Free TikTok transcript generator result showing a pasted public TikTok link converted into plain text with Copy text, TXT, SRT, and VTT download buttons"
+                width={760}
+                height={368}
+                loading="lazy"
+                className="h-auto w-full rounded-xl border border-line/70"
+              />
+              <figcaption className="mt-2.5 text-xs text-muted">
+                Real output from a public TikTok link: copy the transcript or
+                export TXT, SRT, and VTT right below the input box.
+              </figcaption>
+            </figure>
           </section>
 
           <section id="how-to" aria-labelledby="how-to-heading">
@@ -192,21 +203,19 @@ export default function Home() {
             </ol>
             <p className="mt-5">
               This tool offers tiktok video to text transcription free for
-              short, public clips. You do not need to install an app, create an
-              account, or extract the audio yourself to convert TikTok video to
-              text. If the video is public, includes spoken words, and is no
-              longer than three minutes, the generator will try to return a
-              clean transcript. Repeating the same video later is faster,
-              because a successful result is stored for seven days and served
-              again without another speech-to-text run.
+              short, public clips. You do not need an app, an account, or manual
+              audio work to extract text from TikTok video clips. If a video is
+              public, has spoken words, and is under three minutes, you get a
+              clean transcript—and repeating the same link within seven days
+              serves the cached result immediately.
             </p>
             <p className="mt-4">
-              The same form also accepts a{" "}
+              The same form also supports{" "}
               <Link href="/instagram-reels-transcript/" className={linkClass}>
-                public Instagram Reels link
-              </Link>
-              . Private videos, deleted videos, and clips with no spoken audio
-              cannot be turned into text.
+                Instagram Reels transcript
+              </Link>{" "}
+              links. Private, deleted, or silent clips cannot be turned into
+              text.
             </p>
           </section>
 
@@ -352,10 +361,10 @@ export default function Home() {
               instagram.com/reels/, or a /p/ post link that points to a Reel.
               The{" "}
               <Link href="/instagram-reels-transcript/" className={linkClass}>
-                Instagram Reels transcript guide
+                Instagram Reels transcript
               </Link>{" "}
-              explains those URL shapes in more detail, including share links
-              and username-prefixed paths. The same rules apply: the Reel must
+              guide explains those URL shapes in more detail, including share
+              links and username-prefixed paths. The same rules apply: the Reel must
               be public, it must contain spoken audio, and it must be no longer
               than three minutes. A music-only Reel, a private Reel, or a Reel
               that cannot be reached will not produce a transcript. That guide
