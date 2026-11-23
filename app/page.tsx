@@ -123,17 +123,17 @@ export default function Home() {
               id="overview-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              Get a clean TikTok transcript in seconds
+              Free TikTok Transcript Generator
             </h2>
             <p className="mt-4">
-              Whether you search for a TikTok transcript or a tik tok
-              transcript, this free TikTok transcript generator and TikTok
-              transcript maker turns public short-form videos into clean text in
-              seconds. Paste a public link above and the tool checks captions
-              first, then runs speech-to-text when no captions exist. Copy your
-              TikTok transcript or download TXT, SRT, or VTT for quotes, notes,
-              and subtitles—three free new videos per IP each UTC day (up to
-              three minutes), with seven-day caching.
+              This Free TikTok Transcript Generator—whether you search for a
+              TikTok transcript, a tik tok transcript, or a TikTok transcript
+              maker—turns public short-form videos into clean text in seconds.
+              Paste a public link above and the tool checks captions first, then
+              runs speech-to-text when no captions exist. Copy your TikTok
+              transcript or download TXT, SRT, or VTT for quotes, notes, and
+              subtitles—three free new videos per IP each UTC day (up to three
+              minutes), with seven-day caching.
             </p>
             <figure className="mt-6 rounded-2xl border border-line bg-card p-3 shadow-xs sm:p-4">
               <img
@@ -202,12 +202,12 @@ export default function Home() {
               </li>
             </ol>
             <p className="mt-5">
-              This tool offers tiktok video to text transcription free for
-              short, public clips. You do not need an app, an account, or manual
-              audio work to extract text from TikTok video clips. If a video is
-              public, has spoken words, and is under three minutes, you get a
-              clean transcript—and repeating the same link within seven days
-              serves the cached result immediately.
+              This tool offers tiktok video to text transcription free so you
+              can transcribe TikTok videos in your browser without an app or
+              account, and extract text from TikTok video clips in seconds. If a
+              video is public, has spoken words, and is under three minutes, you
+              get a clean transcript—and repeating the same link within seven
+              days serves the cached result immediately.
             </p>
             <p className="mt-4">
               The same form also supports{" "}
@@ -238,9 +238,9 @@ export default function Home() {
               track attached to the video. If official or automatic captions are
               available, those captions can be converted into plain text and
               timestamped files. If no caption track exists, or the track is
-              empty, the tool downloads the audio and sends it to
-              speech-to-text. That is how you get text when a video has no
-              captions: the audio itself is transcribed.
+              empty, the tool downloads the audio and runs speech-to-text to
+              transcribe TikTok audio to text automatically—that is how you get
+              text even when a video has no captions.
             </p>
             <p className="mt-4">
               This matters for clips where people talk quickly, hop between

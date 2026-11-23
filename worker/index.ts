@@ -117,10 +117,10 @@ export class TextFromVideosContainer extends DurableObject<Env> {
   }
 }
 
-const CACHE_VERSION = "2026-11-22-v3";
+const CACHE_VERSION = "2026-11-23-v1";
 const STATIC_CACHE_CONTROL = "public, max-age=31536000, immutable";
 const PAGE_CACHE_CONTROL =
-  "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400";
+  "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800";
 
 function isCacheablePath(pathname: string): boolean {
   if (pathname === "/api" || pathname.startsWith("/api/")) return false;
@@ -181,6 +181,7 @@ export default {
       "Cache-Control",
       isImmutableStatic ? STATIC_CACHE_CONTROL : PAGE_CACHE_CONTROL,
     );
+    cacheHeaders.set("Vary", "Accept-Encoding");
     cacheHeaders.delete("pragma");
     cacheHeaders.delete("expires");
 

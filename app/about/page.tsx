@@ -8,7 +8,8 @@ const title = "About – textfromvideos.com";
 const description =
   "textfromvideos.com is a free tool that turns a public TikTok or Instagram Reels link into a written transcript. No file uploads, accounts, or payments.";
 const canonical = `${SITE_URL}/about/`;
-const linkClass = "font-medium text-accent hover:text-accent-hover";
+const linkClass =
+  "font-medium text-accent underline decoration-accent/60 underline-offset-4 transition-colors hover:text-accent-hover hover:decoration-accent-hover";
 
 export const metadata: Metadata = {
   title,
@@ -51,7 +52,7 @@ export default function AboutPage() {
         <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
           textfromvideos.com is a free website that turns a public TikTok or
           Instagram Reels link into a written transcript. Last updated November
-          20, 2026.
+          23, 2026.
         </p>
 
         <article className="mt-16 space-y-12 text-base leading-7 text-muted">
@@ -67,8 +68,12 @@ export default function AboutPage() {
               <Link href="/#get-transcript" className={linkClass}>
                 form on the homepage
               </Link>{" "}
-              and choose Get transcript. The site does not accept uploaded
-              files. If the video already has official or automatic captions,
+              (or use the dedicated{" "}
+              <Link href="/instagram-reels-transcript/" className={linkClass}>
+                Instagram Reels transcript tool
+              </Link>{" "}
+              for Reels) and choose Get transcript. The site does not accept
+              uploaded files. If the video already has official or automatic captions,
               those captions can be turned into text and timestamped files. If
               there is no usable caption track, the audio is transcribed with
               Deepgram. When the text appears, you can copy it or download TXT,
