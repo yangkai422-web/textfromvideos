@@ -117,7 +117,7 @@ export class TextFromVideosContainer extends DurableObject<Env> {
   }
 }
 
-const CACHE_VERSION = "2026-11-23-v2";
+const CACHE_VERSION = "2026-11-23-v3";
 const STATIC_CACHE_CONTROL = "public, max-age=31536000, immutable";
 const PAGE_CACHE_CONTROL =
   "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800";
