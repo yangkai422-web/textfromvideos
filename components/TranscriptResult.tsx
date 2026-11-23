@@ -50,9 +50,9 @@ export function TranscriptResult({
         className="rounded-2xl border border-line bg-card p-5 shadow-sm sm:p-6"
         aria-live="polite"
       >
-        <h2 className="text-sm font-medium tracking-wide text-muted uppercase">
-          Transcript
-        </h2>
+        <h3 className="text-sm font-medium tracking-wide text-muted uppercase">
+          Your transcript
+        </h3>
         <p className="mt-3 whitespace-pre-wrap text-base leading-7 text-muted">
           {emptyLabel}
         </p>
@@ -66,9 +66,9 @@ export function TranscriptResult({
       aria-live="polite"
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-sm font-medium tracking-wide text-muted uppercase">
-          Transcript
-        </h2>
+        <h3 className="text-sm font-medium tracking-wide text-muted uppercase">
+          Your transcript
+        </h3>
         <div className="flex flex-wrap gap-2">
           <button
             type="button"

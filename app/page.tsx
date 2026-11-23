@@ -123,17 +123,17 @@ export default function Home() {
               id="overview-heading"
               className="text-2xl font-semibold tracking-tight text-ink"
             >
-              Free TikTok Transcript Generator
+              Free TikTok video to text converter
             </h2>
             <p className="mt-4">
-              This Free TikTok Transcript Generator—whether you search for a
-              TikTok transcript, a tik tok transcript, or a TikTok transcript
-              maker—turns public short-form videos into clean text in seconds.
-              Paste a public link above and the tool checks captions first, then
-              runs speech-to-text when no captions exist. Copy your TikTok
-              transcript or download TXT, SRT, or VTT for quotes, notes, and
-              subtitles—three free new videos per IP each UTC day (up to three
-              minutes), with seven-day caching.
+              This free TikTok video to text converter turns any public clip
+              from TikTok to transcript in seconds—no app install or sign-up
+              required. Paste a public link above and our TikTok transcript
+              maker checks attached captions first, then runs speech-to-text
+              when no captions exist. Copy your clean TikTok transcript or
+              download TXT, SRT, or VTT for quotes, notes, and subtitles—three
+              free new videos per IP each UTC day (up to three minutes), with
+              seven-day caching.
             </p>
             <figure className="mt-6 rounded-2xl border border-line bg-card p-3 shadow-xs sm:p-4">
               <img
